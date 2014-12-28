@@ -30,14 +30,12 @@
     var mapContainer = document.getElementById('here-maps');
     var mapZoom = mapContainer.getAttribute('data-zoom');
 
-    console.log(typeof mapZoom);
-
     // Instantiate (and display) a map object:
     var map = new H.Map(
       mapContainer,
       maptypes.normal.map,
       {
-        zoom: Number(mapZoom),
+        zoom: mapZoom,
         center: { lat: latitude, lng: longitude }
       }
     );

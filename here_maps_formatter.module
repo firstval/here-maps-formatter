@@ -12,3 +12,24 @@ function here_maps_formatter_init() {
   drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.js', 'external');
   drupal_add_js('http://js.api.here.com/v3/3.0/mapsjs-pano.js');
 }
+
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function here_maps_formatter_field_formatter_info() {
+  $formatters = array();
+
+  // Set the machine name, label, and field type to be associated with.
+  // It means also that Geofield is a dependency.
+  $formatters['geofield_here_maps'] = array(
+    'label' => t('HERE Maps'),
+    'field types' => array('geofield'),
+    'settings'  => array(
+      // Give a default value when the form is first loaded.
+      'height' => 400,
+    ),
+  );
+
+  return $formatters;
+}

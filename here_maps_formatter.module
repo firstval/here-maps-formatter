@@ -33,3 +33,30 @@ function here_maps_formatter_field_formatter_info() {
 
   return $formatters;
 }
+
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function here_maps_formatter_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  // Get the view_mode where our settings are stored.
+  $display = $instance['display'][$view_mode];
+
+  // Get the actual settings.
+  $settings = $display['settings'];
+
+  // Initialize the element variable.
+  $element = array();
+
+  if ($display['type'] == 'geofield_here_maps') {
+    $element['height'] = array(
+      '#title' => t('Map Height'),
+      '#type' => 'textfield',
+      '#default_value' => $settings['height'],
+      '#field_suffix' => t('px'),
+      '#element_validate' => array('element_validate_integer_positive'),
+    );
+  }
+
+  return $element;
+}

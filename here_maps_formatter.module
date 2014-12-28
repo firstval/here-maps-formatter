@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_init().
+ */
+function here_maps_formatter_init() {
+  // Add HERE Maps 3.0 libraries.
+  drupal_add_css('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.css', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-core.js', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-service.js', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-mapevents.js', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.js', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0/mapsjs-pano.js');
+}

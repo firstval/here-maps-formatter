@@ -95,15 +95,23 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
 
+  $summary = array();
+
   if ($display['type'] == 'geofield_here_maps') {
-    $summary = t('HERE Maps Settings: Height: @height, Zoom Level: @zoom', array(
+    $summary[] = t('HERE Maps Settings');
+
+    $summary[] = t('Map Height: @height', array(
       '@height' => $settings['height'],
+      )
+    );
+
+    $summary[] = t('Zoom Level: @zoom', array(
       '@zoom' => $settings['zoom']
       )
     );
   }
 
-  return $summary;
+  return implode('<br />', $summary);
 }
 
 

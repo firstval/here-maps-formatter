@@ -11,6 +11,9 @@ function here_maps_formatter_init() {
   drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-mapevents.js', 'external');
   drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.js', 'external');
   drupal_add_js('http://js.api.here.com/v3/3.0/mapsjs-pano.js');
+
+  // Load the custom HERE Maps behaviors for processing the map objects.
+  drupal_add_js(drupal_get_path('module', 'here_maps_formatter') . '/js/here_maps_formatter.js');
 }
 
 

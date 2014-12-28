@@ -7,6 +7,15 @@
   Drupal.behaviors.here_maps_formatter = {};
 
   Drupal.behaviors.here_maps_formatter.attach = function (context, settings) {
+    var mapFeatures;
+
+    if (typeof Drupal.settings.here_maps_formatter != 'undefined') {
+      mapFeatures = Drupal.settings.here_maps_formatter.features;
+    }
+
+    var latitude = mapFeatures.lat;
+    var longitude = mapFeatures.lon;
+
     // Initialize the platform object:
     var platform = new H.service.Platform({
       'app_id': 'DemoAppId01082013GAL',
@@ -17,13 +26,18 @@
     // Obtain the default map types from the platform object.
     var maptypes = platform.createDefaultLayers();
 
+    var mapContainer = document.getElementById('here-maps');
+    var mapZoom = mapContainer.getAttribute('data-zoom');
+
+    console.log(typeof mapZoom);
+
     // Instantiate (and display) a map object:
     var map = new H.Map(
-      document.getElementById('here-maps'),
+      mapContainer,
       maptypes.normal.map,
       {
-        zoom: 12,
-        center: { lat: 14, lng: 121 }
+        zoom: Number(mapZoom),
+        center: { lat: latitude, lng: longitude }
       }
     );
 
@@ -33,7 +47,7 @@
     // Create the default UI components
     var ui = H.ui.UI.createDefault(map, maptypes);
 
-    var marker = new H.map.Marker({lat: 14, lng: 121});
+    var marker = new H.map.Marker({lat: latitude, lng: longitude});
     map.addObject(marker);
   }
 })(jQuery);

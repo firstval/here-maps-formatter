@@ -75,3 +75,42 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
 
   return $summary;
 }
+
+
+
+/**
+ * Implements hook_field_formatter_view().
+ *
+ * See also: https://api.drupal.org/api/drupal/modules!field!field.api.php/function/hook_field_formatter_view/7
+ */
+function here_maps_formatter_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $settings = $display['settings'];
+  $height = $settings['height'];
+
+  $element = array();
+
+  if ($display['type'] == 'geofield_here_maps')
+    // Since a field could have multiple values.
+    foreach ($items as $delta => $item) {
+      // $delta is 0, 1, etc.
+      // $element[0] is the target field for single-valued fields.
+      // Inject the custom markup here.
+      // $item['value'] is the actual/raw value.
+      // Wrap a div on this field.
+      $element[$delta] = array('#markup' => '<div id="here-maps" style="width: 400px; height: 400px;"></div>');
+    }
+
+    $features = array(
+      // . $item['lat'] . ', '. $item['lon'].
+      // @todo Handle case with multiple points.
+      'features' => $items[0]
+    );
+
+    // Pass the Geofield map features info to the map processor in JavaScript.
+    drupal_add_js(array('here_maps_formatter' => $features), 'setting');
+    }
+  }
+
+  // This is the 'edited' field, or fields for multiple-valued fields.
+  return $element;
+}

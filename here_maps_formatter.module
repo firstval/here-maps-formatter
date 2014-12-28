@@ -67,6 +67,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#type' => 'select',
       '#default_value' => $settings['zoom'],
       '#options'        => array(
+      // @todo Use a function to populate these hardcoded values.
         0 => '0',
         1 => '1',
         2 => '2',
@@ -80,6 +81,12 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
         10 => '10',
         11 => '11',
         12 => '12',
+        13 => '13',
+        14 => '14',
+        15 => '15',
+        16 => '16',
+        17 => '17',
+        18 => '18',
       ),
     );
   }

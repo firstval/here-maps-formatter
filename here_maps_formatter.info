@@ -1,3 +1,4 @@
 name = HERE Maps Formatter
 description = Provides HERE Maps field formatter for Geofield.
 core = 7.x
+dependencies[] = geofield

@@ -4,6 +4,9 @@
  * Implements hook_init().
  */
 function here_maps_formatter_init() {
+  // @todo: For optimal page rendering, load all the scripts here only
+  // when the page has a non-empty Geofield which is set to HERE Maps formatter.
+  //
   // Add HERE Maps 3.0 libraries.
   drupal_add_css('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.css', 'external');
   drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-core.js', 'external');
@@ -135,24 +138,27 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
   $element = array();
 
   if ($display['type'] == 'geofield_here_maps') {
-    // Since a field could have multiple values.
-    foreach ($items as $delta => $item) {
-      // $delta is 0, 1, etc.
-      // $element[0] is the target field for single-valued fields.
-      // Inject the custom markup here.
-      // $item['value'] is the actual/raw value.
-      // Wrap a div on this field.
-      $element[$delta] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: 100%; height: ' . $map_height . 'px;"></div>');
+    // Make sure that there are Geofield values to process.
+    if (!empty($items)) {
+      // Since a field could have multiple values.
+      foreach ($items as $delta => $item) {
+        // $delta is 0, 1, etc.
+        // $element[0] is the target field for single-valued fields.
+        // Inject the custom markup here.
+        // $item['value'] is the actual/raw value.
+        // Wrap a div on this field.
+        $element[$delta] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: 100%; height: ' . $map_height . 'px;"></div>');
+      }
+
+      $features = array(
+        // . $item['lat'] . ', '. $item['lon'].
+        // @todo Handle case with multiple points.
+        'features' => $items[0]
+      );
+
+      // Pass the Geofield map features info to the map processor in JavaScript.
+      drupal_add_js(array('here_maps_formatter' => $features), 'setting');
     }
-
-    $features = array(
-      // . $item['lat'] . ', '. $item['lon'].
-      // @todo Handle case with multiple points.
-      'features' => $items[0]
-    );
-
-    // Pass the Geofield map features info to the map processor in JavaScript.
-    drupal_add_js(array('here_maps_formatter' => $features), 'setting');
   }
 
   // This is the 'edited' field, or fields for multiple-valued fields.

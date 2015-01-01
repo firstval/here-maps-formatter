@@ -2,13 +2,14 @@
 
 /**
  * @file
- * Install, update and uninstall functions for the colorbox module.
+ * Install, update and uninstall functions for the HERE Maps module.
  */
 
+
 /**
- * UPDATE: Set Map Zoom Levels.
+ * Implements hook_install().
  */
-function here_maps_formatter_update_7001() {
+function here_maps_formatter_install() {
   // Generate sequiential numbers from 0 to 20;
   $options = range(0, 20);
 
@@ -20,6 +21,4 @@ function here_maps_formatter_update_7001() {
 
   // Insert a new Variable table entry.
   variable_set('here_maps_formatter_zoom_levels', $zoom_options);
-
-  return t("Successfully set the HERE Maps zoom level values.");
 }

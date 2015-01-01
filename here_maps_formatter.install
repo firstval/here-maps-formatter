@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the colorbox module.
+ */
+
+/**
+ * UPDATE: Set Map Zoom Levels.
+ */
+function here_maps_formatter_update_7001() {
+  // Generate sequiential numbers from 0 to 20;
+  $options = range(0, 20);
+
+  // Apparently we don't need to convert the linear array to associative one,
+  // the Select FAPI element and/or variable_set automatically handles that.
+  // $options_assoc = drupal_map_assoc($opttions);
+
+  $zoom_options = $options;
+
+  // Insert a new Variable table entry.
+  variable_set('here_maps_formatter_zoom_levels', $zoom_options);
+
+  return t("Successfully set the HERE Maps zoom level values.");
+}

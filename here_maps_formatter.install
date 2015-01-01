@@ -22,3 +22,20 @@ function here_maps_formatter_install() {
   // Insert a new Variable table entry.
   variable_set('here_maps_formatter_zoom_levels', $zoom_options);
 }
+
+
+/**
+ * Implements hook_uninstall().
+ */
+function here_maps_formatter_uninstall() {
+  // Get module variables.
+  global $conf;
+
+  // Since HERE Maps might have more variables later on.
+  foreach (array_keys($conf) as $key) {
+    // Find variables that have the module prefix.
+    if (strpos($key, 'here_maps_formatter_') === 0) {
+      variable_del($key);
+    }
+  }
+}

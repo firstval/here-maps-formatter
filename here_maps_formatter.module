@@ -26,17 +26,19 @@ function here_maps_formatter_init() {
 function here_maps_formatter_field_formatter_info() {
   $formatters = array();
 
-  // Set the machine name, label, and field type to be associated with.
-  // It means also that Geofield is a dependency.
-  $formatters['geofield_here_maps'] = array(
-    'label' => t('HERE Maps'),
-    'field types' => array('geofield'),
-    'settings'  => array(
-      // Give a default value when the form is first loaded.
-      'height' => 400,
-      'zoom' => 12,
-    ),
-  );
+  if (module_exists('geofield')) {
+    // Set the machine name, label, and field type to be associated with.
+    // It means also that Geofield is a dependency.
+    $formatters['geofield_here_maps'] = array(
+      'label' => t('HERE Maps'),
+      'field types' => array('geofield'),
+      'settings'  => array(
+        // Give a default value when the form is first loaded.
+        'height' => 400,
+        'zoom' => 12,
+      ),
+    );
+  }
 
   return $formatters;
 }

@@ -21,6 +21,25 @@ function here_maps_formatter_init() {
 
 
 /**
+ * Implements hook_menu().
+ */
+function here_maps_formatter_menu() {
+  $items = array();
+
+  $items['admin/config/here_maps'] = array(
+    'title' => "HERE Maps Keys",
+    'description' => 'Configuration page for HERE Maps keys.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('here_maps_admin_settings'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+
+/**
  * Implements hook_field_formatter_info().
  */
 function here_maps_formatter_field_formatter_info() {

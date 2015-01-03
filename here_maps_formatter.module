@@ -40,6 +40,42 @@ function here_maps_formatter_menu() {
 
 
 /**
+ * FAPI for map's API keys settings page.
+ */
+function here_maps_admin_settings($form, &$form_state) {
+  $form = array();
+
+  $form['here_maps'] = array(
+    '#title' => "HERE Maps Keys",
+    '#type' => 'fieldset',
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+
+  $form['here_maps']['here_maps_app_id'] = array(
+    '#title' => t('HERE Maps App ID'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('here_maps_app_id', 'DemoAppId01082013GAL'),
+  );
+
+  $form['here_maps']['here_maps_app_code'] = array(
+    '#title' => t('HERE Maps App Code'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('here_maps_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),
+  );
+
+  // Create a system-generated submit form. This is equivalent to:
+  // $form['#submit'][] = 'system_settings_form_submit';
+  // The advantage of this 'submit' callback is the automatic calling
+  // of the corresponding variable_set() for the form elements of the same name:
+  // 'here_maps_app_id' and 'here_maps_app_code'.
+  $form = system_settings_form($form);
+
+  return $form;
+}
+
+
+/**
  * Implements hook_field_formatter_info().
  */
 function here_maps_formatter_field_formatter_info() {

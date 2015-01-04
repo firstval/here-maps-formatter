@@ -4,6 +4,16 @@
  * Implements hook_init().
  */
 function here_maps_formatter_init() {
+  // Retrieve HERE Maps Keys.
+  $api_keys = array(
+    'app_code' => variable_get('here_maps_formatter_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),
+    'app_id' => variable_get('here_maps_formatter_app_id', 'DemoAppId01082013GAL'),
+  );
+
+  // Append the keys to the Drupal.settings.here_maps_formatter global object.
+  // @todo: Need to find a way to not expose these keys to users.
+  drupal_add_js(array('here_maps_formatter' => $api_keys), 'setting');
+
   // @todo: For optimal page rendering, load all the scripts here only
   // when the page has a non-empty Geofield which is set to HERE Maps formatter.
   //
@@ -52,13 +62,13 @@ function here_maps_admin_settings($form, &$form_state) {
     '#collapsed' => FALSE,
   );
 
-  $form['here_maps']['here_maps_app_id'] = array(
+  $form['here_maps']['here_maps_formatter_app_id'] = array(
     '#title' => t('HERE Maps App ID'),
     '#type' => 'textfield',
     '#default_value' => variable_get('here_maps_app_id', 'DemoAppId01082013GAL'),
   );
 
-  $form['here_maps']['here_maps_app_code'] = array(
+  $form['here_maps']['here_maps_formatter_app_code'] = array(
     '#title' => t('HERE Maps App Code'),
     '#type' => 'textfield',
     '#default_value' => variable_get('here_maps_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),

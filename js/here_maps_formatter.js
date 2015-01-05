@@ -13,13 +13,23 @@
         var latitude = mapFeatures.lat;
         var longitude = mapFeatures.lon;
 
+        var credentials = {};
+
+        // Retrieve the set credentials in 'variable' table via the admin form.
+        credentials.app_id = settings.here_maps_formatter.app_id;
+        credentials.app_code = settings.here_maps_formatter.app_code;
+
+        // Check if the page is using the demo credentials.
+        // Include the CIT (Customer Integration Testing) flag of demo tiles.
+        // Otherwise, demo version will not work.
+        if (credentials.app_id == 'DemoAppId01082013GAL') {
+          credentials.useCIT = true;
+        }
+
         // Initialize the platform object.
         // @todo Create an Drupal Admin UI for inputting this credentials.
-        var platform = new H.service.Platform({
-          'app_id': 'DemoAppId01082013GAL',
-          'app_code': 'AJKnXv84fjrb0KIHawS0Tg',
-          useCIT: true
-        });
+        // @todo Include the 'useHTTPS' platform option.
+        var platform = new H.service.Platform(credentials);
 
         // Obtain the default map types from the platform object.
         var maptypes = platform.createDefaultLayers();

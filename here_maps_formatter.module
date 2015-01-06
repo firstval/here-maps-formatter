@@ -65,13 +65,13 @@ function here_maps_admin_settings($form, &$form_state) {
   $form['here_maps']['here_maps_formatter_app_id'] = array(
     '#title' => t('HERE Maps App ID'),
     '#type' => 'textfield',
-    '#default_value' => variable_get('here_maps_app_id', 'DemoAppId01082013GAL'),
+    '#default_value' => variable_get('here_maps_formatter_app_id', 'DemoAppId01082013GAL'),
   );
 
   $form['here_maps']['here_maps_formatter_app_code'] = array(
     '#title' => t('HERE Maps App Code'),
     '#type' => 'textfield',
-    '#default_value' => variable_get('here_maps_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),
+    '#default_value' => variable_get('here_maps_formatter_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),
   );
 
   // Create a system-generated submit form. This is equivalent to:

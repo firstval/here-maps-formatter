@@ -19,6 +19,11 @@
         credentials.app_id = settings.here_maps_formatter.app_id;
         credentials.app_code = settings.here_maps_formatter.app_code;
 
+        // Delete the credentials so that other people could not access it
+        // in browser's console via Drupal.settings global object.
+        delete settings.here_maps_formatter.app_id;
+        delete settings.here_maps_formatter.app_code;
+
         // Check if the page is using the demo credentials.
         // Include the CIT (Customer Integration Testing) flag of demo tiles.
         // Otherwise, demo version will not work.

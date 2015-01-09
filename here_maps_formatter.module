@@ -144,8 +144,6 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
 
 /**
  * Implements hook_field_formatter_view().
- *
- * See also: https://api.drupal.org/api/drupal/modules!field!field.api.php/function/hook_field_formatter_view/7
  */
 function here_maps_formatter_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $settings = $display['settings'];
@@ -156,7 +154,13 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
 
   if ($display['type'] == 'geofield_here_maps') {
     // Make sure that there are Geofield values to process.
+    // This will make also the HERE Maps scripts to be loaded only
+    // in selected pages to avoid affecting a page's stability and
+    // its loading performance.
     if (!empty($items)) {
+      // Load the helper scripts.
+      _here_maps_formatter_scripts_loader();
+
       // Since a field could have multiple values.
       foreach ($items as $delta => $item) {
         // $delta is 0, 1, etc.
@@ -180,4 +184,30 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
 
   // This is the 'edited' field, or fields for multiple-valued fields.
   return $element;
+}
+
+
+/**
+ * Helper function for loading HERE Maps core and related scripts.
+ */
+function _here_maps_formatter_scripts_loader(){
+  // Retrieve HERE Maps keys/credentials.
+  $api_keys = array(
+    'app_code' => variable_get('here_maps_formatter_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),
+    'app_id' => variable_get('here_maps_formatter_app_id', 'DemoAppId01082013GAL'),
+  );
+
+  // Append the keys to the Drupal.settings.here_maps_formatter global object.
+  drupal_add_js(array('here_maps_formatter' => $api_keys), 'setting');
+
+  // Add HERE Maps 3.0 libraries.
+  drupal_add_css('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.css', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-core.js', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-service.js', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-mapevents.js', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.js', 'external');
+  drupal_add_js('http://js.api.here.com/v3/3.0/mapsjs-pano.js');
+
+  // Load the custom HERE Maps behaviors for processing the map objects.
+  drupal_add_js(drupal_get_path('module', 'here_maps_formatter') . '/js/here_maps_formatter.js');
 }

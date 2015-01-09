@@ -1,34 +1,5 @@
 <?php
 
-/**
- * Implements hook_init().
- */
-function here_maps_formatter_init() {
-  // Retrieve HERE Maps Keys.
-  $api_keys = array(
-    'app_code' => variable_get('here_maps_formatter_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),
-    'app_id' => variable_get('here_maps_formatter_app_id', 'DemoAppId01082013GAL'),
-  );
-
-  // Append the keys to the Drupal.settings.here_maps_formatter global object.
-  // @todo: Need to find a way to not expose these keys to users.
-  drupal_add_js(array('here_maps_formatter' => $api_keys), 'setting');
-
-  // @todo: For optimal page rendering, load all the scripts here only
-  // when the page has a non-empty Geofield which is set to HERE Maps formatter.
-  //
-  // Add HERE Maps 3.0 libraries.
-  drupal_add_css('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.css', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-core.js', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-service.js', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-mapevents.js', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.js', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0/mapsjs-pano.js');
-
-  // Load the custom HERE Maps behaviors for processing the map objects.
-  drupal_add_js(drupal_get_path('module', 'here_maps_formatter') . '/js/here_maps_formatter.js');
-}
-
 
 /**
  * Implements hook_menu().

@@ -173,8 +173,8 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
 
       $features = array(
         // . $item['lat'] . ', '. $item['lon'].
-        // @todo Handle case with multiple points.
-        'features' => $items[0]
+        // @todo Handle case also with multiple type of features.
+        'features' => $items
       );
 
       // Pass the Geofield map features info to the map processor in JavaScript.

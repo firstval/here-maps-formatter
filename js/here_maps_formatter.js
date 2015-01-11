@@ -7,7 +7,13 @@
 
   Drupal.behaviors.here_maps_formatter = {
     attach : function (context, settings) {
-      if (typeof settings.here_maps_formatter != 'undefined') {
+      // Filter the POINT features only; we don't want
+      // to process LINE and POLYGON features or combination of these.
+      // No need to include a check for these:
+      //   typeof settings.here_maps_formatter != 'undefined'
+      //   typeof settings.here_maps_formatter.features != 'undefined'
+      // since this JS file is only inserted when Geofield has non-empty values.
+      if (settings.here_maps_formatter.features[0].geo_type == 'point') {
         var credentials = {};
 
         // Retrieve the set credentials in 'variable' table via the admin form.
@@ -66,6 +72,7 @@
         // Create a group/container for the map features.
         var group = new H.map.Group();
 
+        // Create a new marker for each point feature.
         var length = mapFeatures.length;
         for (var i = 0; i < length; i++) {
           var latitude = mapFeatures[i].lat;

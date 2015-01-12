@@ -70,6 +70,7 @@ function here_maps_formatter_field_formatter_info() {
       'field types' => array('geofield'),
       'settings'  => array(
         // Give a default value when the form is first loaded.
+        'width' => 600,
         'height' => 400,
         'zoom' => 12,
       ),
@@ -94,6 +95,15 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
   $element = array();
 
   if ($display['type'] == 'geofield_here_maps') {
+    $element['width'] = array(
+      '#title' => t('Map Width'),
+      '#type' => 'textfield',
+      '#size' => 4,
+      '#default_value' => $settings['width'],
+      '#field_suffix' => t('px'),
+      '#element_validate' => array('element_validate_integer_positive'),
+    );
+
     $element['height'] = array(
       '#title' => t('Map Height'),
       '#type' => 'textfield',
@@ -127,6 +137,11 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
   if ($display['type'] == 'geofield_here_maps') {
     $summary[] = t('HERE Maps Settings');
 
+    $summary[] = t('Map Width: @width', array(
+      '@width' => $settings['width'],
+      )
+    );
+
     $summary[] = t('Map Height: @height', array(
       '@height' => $settings['height'],
       )
@@ -147,6 +162,7 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
  */
 function here_maps_formatter_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $settings = $display['settings'];
+  $map_width = $settings['width'];
   $map_height = $settings['height'];
   $map_zoom = $settings['zoom'];
 
@@ -168,7 +184,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
         // Inject the custom markup here.
         // $item['value'] is the actual/raw value.
         // Wrap a div on this field.
-        $element[$delta] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: 100%; height: ' . $map_height . 'px;"></div>');
+        $element[$delta] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: ' . $map_width . 'px; height: ' . $map_height . 'px;"></div>');
       }
 
       $features = array(

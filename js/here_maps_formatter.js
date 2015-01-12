@@ -44,7 +44,6 @@
         //   <div id="here-maps" data-zoom="10" style="..."></div>
         var mapContainer = document.getElementById('here-maps');
 
-        console.log(mapContainer);
         var mapZoom = mapContainer.getAttribute('data-zoom');
 
         var mapFeatures = Drupal.settings.here_maps_formatter.features;

@@ -151,12 +151,13 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
   if ($display['type'] == 'geofield_here_maps') {
     $summary[] = t('HERE Maps Settings');
 
-    $summary[] = t('Map Width: @width', array(
+    $summary[] = t('Map Width: @width@unit', array(
       '@width' => $settings['width'],
+      '@unit' => $settings['width_unit'],
       )
     );
 
-    $summary[] = t('Map Height: @height', array(
+    $summary[] = t('Map Height: @height' . 'px', array(
       '@height' => $settings['height'],
       )
     );

@@ -99,7 +99,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
     $element['width'] = array(
       '#title' => t('Map Width'),
       '#type' => 'textfield',
-      '#size' => 4,
+      '#size' => 2,
       '#default_value' => $settings['width'],
       '#element_validate' => array('element_validate_integer_positive'),
       '#prefix' => '<table><tr><td style="width:1%; white-space:nowrap;">',
@@ -121,7 +121,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
     $element['height'] = array(
       '#title' => t('Map Height'),
       '#type' => 'textfield',
-      '#size' => 4,
+      '#size' => 2,
       '#default_value' => $settings['height'],
       '#field_suffix' => t('px'),
       '#element_validate' => array('element_validate_integer_positive'),

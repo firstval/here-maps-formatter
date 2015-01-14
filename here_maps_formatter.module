@@ -71,6 +71,7 @@ function here_maps_formatter_field_formatter_info() {
       'settings'  => array(
         // Give a default value when the form is first loaded.
         'width' => 600,
+        'width_unit' => 'px',
         'height' => 400,
         'zoom' => 12,
       ),
@@ -100,8 +101,21 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#type' => 'textfield',
       '#size' => 4,
       '#default_value' => $settings['width'],
-      '#field_suffix' => t('px'),
       '#element_validate' => array('element_validate_integer_positive'),
+      '#prefix' => '<table><tr><td style="width:1%; white-space:nowrap;">',
+      '#suffix' => '</td>',
+    );
+
+    $element['width_unit'] = array(
+      '#type' => 'select',
+      '#title' => t('Unit'),
+      '#default_value' => $settings['width_unit'],
+      '#options' => array(
+        'px' => t('px'),
+        '%' => t('%'),
+      ),
+      '#prefix' => '<td>',
+      '#suffix' => '</td></tr></table>',
     );
 
     $element['height'] = array(

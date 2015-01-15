@@ -102,22 +102,25 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#size' => 2,
       '#default_value' => $settings['width'],
       '#element_validate' => array('element_validate_integer_positive'),
-      '#prefix' => '<table><tr><td style="width:1%; white-space:nowrap;">',
-      '#suffix' => '</td>',
+      '#prefix' => '<div><div style="float: left">',
+      '#suffix' => '</div>',
     );
 
     $element['width_unit'] = array(
       '#type' => 'select',
-      '#title' => t('Unit'),
       '#default_value' => $settings['width_unit'],
       '#options' => array(
         'px' => t('px'),
         '%' => t('%'),
       ),
-      '#prefix' => '<td>',
-      '#suffix' => '</td></tr></table>',
+      '#prefix' => '<div>',
+      '#suffix' => '</div></div>',
+      '#attributes' => array(
+        'style' => 'margin-top: 22px;'
+      ),
     );
 
+    // Reset the floats before rendering the Map Height element.
     $element['height'] = array(
       '#title' => t('Map Height'),
       '#type' => 'textfield',
@@ -125,6 +128,8 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#default_value' => $settings['height'],
       '#field_suffix' => t('px'),
       '#element_validate' => array('element_validate_integer_positive'),
+      '#prefix' => '<div style="clear: left;">',
+      '#suffix' => '</div>',
     );
 
     $element['zoom'] = array(

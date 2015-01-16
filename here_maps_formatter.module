@@ -100,6 +100,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#title' => t('Map Width'),
       '#type' => 'textfield',
       '#size' => 2,
+      '#required' => TRUE,
       '#default_value' => $settings['width'],
       '#element_validate' => array('element_validate_integer_positive'),
       '#prefix' => '<div><div style="float: left">',

@@ -126,6 +126,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#title' => t('Map Height'),
       '#type' => 'textfield',
       '#size' => 2,
+      '#required' => TRUE,
       '#default_value' => $settings['height'],
       '#field_suffix' => t('px'),
       '#element_validate' => array('element_validate_integer_positive'),

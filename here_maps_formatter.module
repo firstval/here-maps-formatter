@@ -137,6 +137,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
     $element['zoom'] = array(
       '#title' => t('Zoom Level'),
       '#type' => 'select',
+      '#description' => t('For multiple markers, the best zoom level will be auto-computed to fit them all in the map.'),
       '#default_value' => $settings['zoom'],
       '#options' => variable_get('here_maps_formatter_zoom_levels'),
     );

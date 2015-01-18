@@ -68,6 +68,9 @@
         // Create the default UI components
         var ui = H.ui.UI.createDefault(map, maptypes);
 
+        // Reposition the Map Settings menu for better visual balance.
+        ui.getControl('mapsettings').setAlignment('top-right');
+
         // Create a group/container for the map features.
         var group = new H.map.Group();
 

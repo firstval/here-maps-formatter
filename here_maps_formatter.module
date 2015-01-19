@@ -69,11 +69,12 @@ function here_maps_formatter_field_formatter_info() {
       'label' => t('HERE Maps'),
       'field types' => array('geofield'),
       'settings'  => array(
-        // Give a default value when the form is first loaded.
+        // Give default values when the form is first loaded.
         'width' => 600,
         'width_unit' => 'px',
         'height' => 400,
         'zoom' => 12,
+        'map_settings' => 1,
       ),
     );
   }
@@ -141,6 +142,12 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#default_value' => $settings['zoom'],
       '#options' => variable_get('here_maps_formatter_zoom_levels'),
     );
+
+    $element['map_settings'] = array(
+      '#title' => t('Include Map Settings Button'),
+      '#type' => 'checkbox',
+      '#default_value' => $settings['map_settings'],
+    );
   }
 
   return $element;
@@ -172,6 +179,11 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
 
     $summary[] = t('Zoom Level: @zoom', array(
       '@zoom' => $settings['zoom']
+      )
+    );
+
+    $summary[] = t('Map Settings Button: @map_settings', array(
+      '@map_settings' => $settings['map_settings']
       )
     );
   }
@@ -230,7 +242,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
 /**
  * Helper function for loading HERE Maps core and related scripts.
  */
-function _here_maps_formatter_scripts_loader(){
+function _here_maps_formatter_scripts_loader() {
   // Retrieve HERE Maps keys/credentials.
   $api_keys = array(
     'app_code' => variable_get('here_maps_formatter_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),

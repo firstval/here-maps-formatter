@@ -68,8 +68,16 @@
         // Create the default UI components
         var ui = H.ui.UI.createDefault(map, maptypes);
 
-        // Reposition the Map Settings menu for better visual balance.
-        ui.getControl('mapsettings').setAlignment('top-right');
+        // Check if the map settings button is needed to be displayed.
+        if (settings.here_maps_formatter.map_ui.map_settings) {
+          // Reposition the Map Settings menu for better visual balance.
+          ui.getControl('mapsettings').setAlignment('top-right');
+        }
+
+        // Hide the map settings button.
+        else {
+          ui.getControl('mapsettings').setVisibility(false);
+        }
 
         // Create a group/container for the map features.
         var group = new H.map.Group();

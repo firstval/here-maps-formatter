@@ -217,16 +217,6 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
       // Load the helper scripts.
       _here_maps_formatter_scripts_loader();
 
-      // Since a field could have multiple values.
-      foreach ($items as $delta => $item) {
-        // $delta is 0, 1, etc.
-        // $element[0] is the target field for single-valued fields.
-        // Inject the custom markup here.
-        // $item['value'] is the actual/raw value.
-        // Wrap a div on this field.
-        $element[$delta] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: ' . $map_width . $map_width_unit . '; height: ' . $map_height . 'px;"></div>');
-      }
-
       // Replace the Geofield markup.
       $element[0] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: ' . $map_width . $map_width_unit . '; height: ' . $map_height . 'px;"></div>');
 

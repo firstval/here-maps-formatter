@@ -204,6 +204,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
   $map_width_unit = $settings['width_unit'];
   $map_height = $settings['height'];
   $map_zoom = $settings['zoom'];
+  $map_settings = $settings['map_settings'];
 
   $element = array();
 
@@ -226,14 +227,18 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
         $element[$delta] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: ' . $map_width . $map_width_unit . '; height: ' . $map_height . 'px;"></div>');
       }
 
-      $features = array(
-        // . $item['lat'] . ', '. $item['lon'].
-        // @todo Handle case also with multiple type of features.
-        'features' => $items
+      // Replace the Geofield markup.
+      $element[0] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: ' . $map_width . $map_width_unit . '; height: ' . $map_height . 'px;"></div>');
+
+      // Setup the data to be passed to JS processor.
+      $data = array();
+      $data['features'] = $items;
+      $data['map_ui'] = array(
+        'map_settings' => $map_settings,
       );
 
       // Pass the Geofield map features info to the map processor in JavaScript.
-      drupal_add_js(array('here_maps_formatter' => $features), 'setting');
+      drupal_add_js(array('here_maps_formatter' => $data), 'setting');
     }
   }
 

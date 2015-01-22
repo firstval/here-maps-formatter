@@ -74,6 +74,7 @@ function here_maps_formatter_field_formatter_info() {
         'width_unit' => 'px',
         'height' => 400,
         'zoom' => 12,
+        'base_map' => 'Normal',
         'map_settings' => 1,
       ),
     );
@@ -141,6 +142,17 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#description' => t('For multiple markers, the best zoom level will be auto-computed to fit them all in the map.'),
       '#default_value' => $settings['zoom'],
       '#options' => variable_get('here_maps_formatter_zoom_levels'),
+    );
+
+    $element['base_map'] = array(
+      '#type' => 'select',
+      '#title' => t('Base Map'),
+      '#default_value' => $settings['base_map'],
+      '#options' => array(
+        'Normal' => t('Normal'),
+        'Satellite' => t('Satellite'),
+        'Terrain' => t('Terrain'),
+      ),
     );
 
     $element['map_settings'] = array(

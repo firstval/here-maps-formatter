@@ -32,6 +32,11 @@
           credentials.useCIT = true;
         }
 
+        // Check if the map assets should utilize the secure protocol (https).
+        if (settings.here_maps_formatter.connection_protocol == 'https') {
+          credentials.useHTTPS = true;
+        }
+
         // Initialize the platform object.
         // @todo Create an Drupal Admin UI for inputting this credentials.
         // @todo Include the 'useHTTPS' platform option.

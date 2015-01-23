@@ -118,6 +118,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#default_value' => $settings['width_unit'],
       '#options' => array(
         'px' => t('px'),
+        'em' => t('em'),
         '%' => t('%'),
       ),
       '#prefix' => '<div>',

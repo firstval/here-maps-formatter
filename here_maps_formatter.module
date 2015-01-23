@@ -260,6 +260,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
   $base_map = $settings['base_map'];
   $connection_protocol = $settings['connection_protocol'];
   $map_settings = $settings['map_settings'];
+  $scale_bar = $settings['scale_bar'];
 
   $element = array();
 
@@ -282,6 +283,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
       $data['connection_protocol'] = $connection_protocol;
       $data['map_ui'] = array(
         'map_settings' => $map_settings,
+        'scale_bar' => $scale_bar,
       );
 
       // Pass the Geofield map features info to the map processor in JavaScript.

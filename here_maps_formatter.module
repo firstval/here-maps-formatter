@@ -198,6 +198,11 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
       )
     );
 
+    $summary[] = t('Base Map: @base_map', array(
+      '@base_map' => $settings['base_map'],
+      )
+    );
+
     // Convert the 0 or 1 checkbox's value/state to a more readable format.
     $map_settings = ($settings['map_settings'] == 1) ? 'Enabled' : 'Disabled';
 

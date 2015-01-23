@@ -265,10 +265,20 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
  * Helper function for loading HERE Maps core and related scripts.
  */
 function _here_maps_formatter_scripts_loader() {
+  // Retrieve the app credential values,
+  // return their default values if they're not set yet.
+  $app_code = variable_get('here_maps_formatter_app_code', 'AJKnXv84fjrb0KIHawS0Tg');
+  $app_id = variable_get('here_maps_formatter_app_id', 'DemoAppId01082013GAL');
+
+  // Check if the app credentials have not been deleted on their admin form
+  // or they're not set to empty values.
+  $app_code = (!empty($app_code)) ? $app_code : 'AJKnXv84fjrb0KIHawS0Tg';
+  $app_id = (!empty($app_id)) ? $app_id : 'DemoAppId01082013GAL';
+
   // Retrieve HERE Maps keys/credentials.
   $api_keys = array(
-    'app_code' => variable_get('here_maps_formatter_app_code', 'AJKnXv84fjrb0KIHawS0Tg'),
-    'app_id' => variable_get('here_maps_formatter_app_id', 'DemoAppId01082013GAL'),
+    'app_code' => $app_code,
+    'app_id' => $app_id,
   );
 
   // Append the keys to the Drupal.settings.here_maps_formatter global object.

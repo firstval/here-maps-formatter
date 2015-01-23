@@ -79,6 +79,7 @@ function here_maps_formatter_field_formatter_info() {
         'height' => 400,
         'zoom' => 12,
         'base_map' => 'Normal',
+        'connection_protocol' => 'http',
         'map_settings' => 1,
       ),
     );
@@ -157,6 +158,16 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
         'Normal' => t('Normal'),
         'Satellite' => t('Satellite'),
         'Terrain' => t('Terrain'),
+      ),
+    );
+
+    $element['connection_protocol'] = array(
+      '#type' => 'select',
+      '#title' => t('Connection Protocol'),
+      '#default_value' => $settings['connection_protocol'],
+      '#options' => array(
+        'http' => t('http'),
+        'https' => t('https'),
       ),
     );
 

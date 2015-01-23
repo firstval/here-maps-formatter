@@ -10,8 +10,8 @@
       // Filter the POINT features only; we don't want
       // to process LINE and POLYGON features or combination of these.
       // No need to include a check for these:
-      //   typeof settings.here_maps_formatter != 'undefined'
-      //   typeof settings.here_maps_formatter.features != 'undefined'
+      // typeof settings.here_maps_formatter != 'undefined'
+      // typeof settings.here_maps_formatter.features != 'undefined'
       // since this JS file is only inserted when Geofield has non-empty values.
       if (settings.here_maps_formatter.features[0].geo_type == 'point') {
         var credentials = {};
@@ -41,7 +41,7 @@
         var maptypes = platform.createDefaultLayers();
 
         // Sample rendered field's markup for the HERE Maps Formatter:
-        //   <div id="here-maps" data-zoom="10" style="..."></div>
+        // <div id="here-maps" data-zoom="10" style="..."></div>
         var mapContainer = document.getElementById('here-maps');
 
         var mapZoom = mapContainer.getAttribute('data-zoom');
@@ -65,7 +65,7 @@
         // Activate map behaviors/events.
         var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
-        // Create the default UI components
+        // Create the default UI components.
         var ui = H.ui.UI.createDefault(map, maptypes);
 
         // Check if the map settings button is needed to be displayed.

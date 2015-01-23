@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @file
+ * Provides fomatter integration of the HERE Maps JS API with the Geofield.
+ */
 
 /**
  * Implements hook_menu().
@@ -119,7 +123,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#prefix' => '<div>',
       '#suffix' => '</div></div>',
       '#attributes' => array(
-        'style' => 'margin-left: -4px; margin-top: 22px;'
+        'style' => 'margin-left: -4px; margin-top: 22px;',
       ),
     );
 
@@ -184,13 +188,13 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
       )
     );
 
-    $summary[] = t('Map Height: @height' . 'px', array(
+    $summary[] = t('Map Height: @heightpx', array(
       '@height' => $settings['height'],
       )
     );
 
     $summary[] = t('Zoom Level: @zoom', array(
-      '@zoom' => $settings['zoom']
+      '@zoom' => $settings['zoom'],
       )
     );
 
@@ -198,7 +202,7 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
     $map_settings = ($settings['map_settings'] == 1) ? 'Enabled' : 'Disabled';
 
     $summary[] = t('Map Settings Button: @map_settings', array(
-      '@map_settings' => $map_settings
+      '@map_settings' => $map_settings,
       )
     );
   }

@@ -215,6 +215,11 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
       )
     );
 
+    $summary[] = t('Connection Protocol: @connection_protocol', array(
+      '@connection_protocol' => $settings['connection_protocol'],
+      )
+    );
+
     // Convert the 0 or 1 checkbox's value/state to a more readable format.
     $map_settings = ($settings['map_settings'] == 1) ? 'Enabled' : 'Disabled';
 

@@ -11,7 +11,7 @@
 function here_maps_formatter_install() {
   // Use the demo credentials provided by HERE Maps.
   $app_id = 'DemoAppId01082013GAL';
-  $app_code ='AJKnXv84fjrb0KIHawS0Tg';
+  $app_code = 'AJKnXv84fjrb0KIHawS0Tg';
 
   // Insert the values to the 'variable' table.
   variable_set('here_maps_formatter_app_id', $app_id);

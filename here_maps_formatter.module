@@ -243,6 +243,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
   $map_height = $settings['height'];
   $map_zoom = $settings['zoom'];
   $base_map = $settings['base_map'];
+  $connection_protocol = $settings['connection_protocol'];
   $map_settings = $settings['map_settings'];
 
   $element = array();
@@ -263,6 +264,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
       $data = array();
       $data['features'] = $items;
       $data['base_map'] = $base_map;
+      $data['connection_protocol'] = $connection_protocol;
       $data['map_ui'] = array(
         'map_settings' => $map_settings,
       );

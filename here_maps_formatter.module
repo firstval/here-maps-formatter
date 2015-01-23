@@ -245,6 +245,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
       // Setup the data to be passed to JS processor.
       $data = array();
       $data['features'] = $items;
+      $data['base_map'] = $base_map;
       $data['map_ui'] = array(
         'map_settings' => $map_settings,
       );

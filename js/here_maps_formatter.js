@@ -91,6 +91,11 @@
           ui.getControl('mapsettings').setVisibility(false);
         }
 
+        // Check if the map's scale bar is not to be displayed.
+        if (!settings.here_maps_formatter.map_ui.scalebar) {
+          ui.getControl('scalebar').setVisibility(false);
+        }
+
         // Create a group/container for the map features.
         var group = new H.map.Group();
 

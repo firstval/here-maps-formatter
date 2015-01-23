@@ -38,7 +38,16 @@
         var platform = new H.service.Platform(credentials);
 
         // Obtain the default map types from the platform object.
-        var maptypes = platform.createDefaultLayers();
+        var mapTypes = platform.createDefaultLayers();
+
+        // Values are either 'Normal', 'Satellite', or 'Terrain'.
+        var chosenBaseMap = Drupal.settings.here_maps_formatter.base_map;
+
+        // Convert the string to lowercase as required by the HERE Maps API.
+        chosenBaseMap = chosenBaseMap.toLowerCase();
+
+        // Sample base map value: mapTypes.terrain.map.
+        var baseMap = mapTypes[chosenBaseMap]['map'];
 
         // Sample rendered field's markup for the HERE Maps Formatter:
         // <div id="here-maps" data-zoom="10" style="..."></div>
@@ -55,7 +64,7 @@
         // Instantiate (and display) a map object:
         var map = new H.Map(
           mapContainer,
-          maptypes.normal.map,
+          baseMap,
           {
             zoom: mapZoom,
             center: { lat: latitude, lng: longitude }
@@ -66,7 +75,7 @@
         var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
         // Create the default UI components.
-        var ui = H.ui.UI.createDefault(map, maptypes);
+        var ui = H.ui.UI.createDefault(map, mapTypes);
 
         // Check if the map settings button is needed to be displayed.
         if (settings.here_maps_formatter.map_ui.map_settings) {

@@ -81,6 +81,7 @@ function here_maps_formatter_field_formatter_info() {
         'base_map' => 'Normal',
         'connection_protocol' => 'http',
         'map_settings' => 1,
+        'scale_bar' => 1,
       ),
     );
   }
@@ -175,6 +176,12 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#title' => t('Include Map Settings Button'),
       '#type' => 'checkbox',
       '#default_value' => $settings['map_settings'],
+    );
+
+    $element['scale_bar'] = array(
+      '#title' => t('Include Scale Bar'),
+      '#type' => 'checkbox',
+      '#default_value' => $settings['scale_bar'],
     );
   }
 

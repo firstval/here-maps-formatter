@@ -285,11 +285,11 @@ function _here_maps_formatter_scripts_loader() {
   drupal_add_js(array('here_maps_formatter' => $api_keys), 'setting');
 
   // Add HERE Maps 3.0 libraries.
-  drupal_add_css('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.css', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-core.js', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-service.js', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-mapevents.js', 'external');
-  drupal_add_js('http://js.api.here.com/v3/3.0.8.0/mapsjs-ui.js', 'external');
+  drupal_add_css('//js.api.here.com/v3/3.0.8.0/mapsjs-ui.css', 'external');
+  drupal_add_js('//js.api.here.com/v3/3.0.8.0/mapsjs-core.js', 'external');
+  drupal_add_js('//js.api.here.com/v3/3.0.8.0/mapsjs-service.js', 'external');
+  drupal_add_js('//js.api.here.com/v3/3.0.8.0/mapsjs-mapevents.js', 'external');
+  drupal_add_js('//js.api.here.com/v3/3.0.8.0/mapsjs-ui.js', 'external');
 
   // Load the custom HERE Maps behaviors for processing the map objects.
   drupal_add_js(drupal_get_path('module', 'here_maps_formatter') . '/js/here_maps_formatter.js');

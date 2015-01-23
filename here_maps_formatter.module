@@ -234,6 +234,14 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
       '@map_settings' => $map_settings,
       )
     );
+
+    // Convert the 0 or 1 checkbox's value/state to a more readable format.
+    $scale_bar = ($settings['scale_bar'] == 1) ? 'Enabled' : 'Disabled';
+
+    $summary[] = t('Scale Bar: @scale_bar', array(
+      '@scale_bar' => $scale_bar,
+      )
+    );
   }
 
   return implode('<br />', $summary);

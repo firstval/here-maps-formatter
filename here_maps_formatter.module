@@ -225,6 +225,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
   $map_width_unit = $settings['width_unit'];
   $map_height = $settings['height'];
   $map_zoom = $settings['zoom'];
+  $base_map = $settings['base_map'];
   $map_settings = $settings['map_settings'];
 
   $element = array();

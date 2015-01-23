@@ -38,8 +38,6 @@
         }
 
         // Initialize the platform object.
-        // @todo Create an Drupal Admin UI for inputting this credentials.
-        // @todo Include the 'useHTTPS' platform option.
         var platform = new H.service.Platform(credentials);
 
         // Obtain the default map types from the platform object.

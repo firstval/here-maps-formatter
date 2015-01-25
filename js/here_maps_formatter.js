@@ -92,7 +92,7 @@
         }
 
         // Check if the map's scale bar is not to be displayed.
-        if (!settings.here_maps_formatter.map_ui.scalebar) {
+        if (!settings.here_maps_formatter.map_ui.scale_bar) {
           ui.getControl('scalebar').setVisibility(false);
         }
 

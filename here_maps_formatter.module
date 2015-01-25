@@ -260,6 +260,11 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
       '@scale_bar' => $scale_bar,
       )
     );
+
+    $summary[] = t('Marker Color: @marker_color', array(
+      '@marker_color' => $settings['marker_color'],
+      )
+    );
   }
 
   return implode('<br />', $summary);

@@ -284,6 +284,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
   $connection_protocol = $settings['connection_protocol'];
   $map_settings = $settings['map_settings'];
   $scale_bar = $settings['scale_bar'];
+  $marker_color = $settings['marker_color'];
 
   $element = array();
 
@@ -308,6 +309,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
         'map_settings' => $map_settings,
         'scale_bar' => $scale_bar,
       );
+      $data['marker_color'] = $marker_color;
 
       // Pass the Geofield map features info to the map processor in JavaScript.
       drupal_add_js(array('here_maps_formatter' => $data), 'setting');

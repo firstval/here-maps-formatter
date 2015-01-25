@@ -153,8 +153,8 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
     );
 
     $element['base_map'] = array(
-      '#type' => 'select',
       '#title' => t('Base Map'),
+      '#type' => 'select',
       '#default_value' => $settings['base_map'],
       '#options' => array(
         'Normal' => t('Normal'),
@@ -164,8 +164,8 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
     );
 
     $element['connection_protocol'] = array(
-      '#type' => 'select',
       '#title' => t('Connection Protocol'),
+      '#type' => 'select',
       '#default_value' => $settings['connection_protocol'],
       '#options' => array(
         'http' => t('http'),
@@ -186,8 +186,8 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
     );
 
     $element['marker_color'] = array(
-      '#type' => 'textfield',
       '#title' => t('Marker Color'),
+      '#type' => 'textfield',
       '#size' => 7,
       '#default_value' => $settings['marker_color'],
       '#attributes' => array(

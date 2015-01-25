@@ -82,6 +82,7 @@ function here_maps_formatter_field_formatter_info() {
         'connection_protocol' => 'http',
         'map_settings' => 1,
         'scale_bar' => 1,
+        'marker_color' => '#18d',
       ),
     );
   }
@@ -182,6 +183,23 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#title' => t('Include Scale Bar'),
       '#type' => 'checkbox',
       '#default_value' => $settings['scale_bar'],
+    );
+
+    $element['marker_color'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Marker Color'),
+      '#size' => 7,
+      '#default_value' => $settings['marker_color'],
+      '#attributes' => array(
+        'id' => 'here-maps-formatter-color-picker-target',
+      ),
+      '#attached' => array(
+        'library' => array(
+          array('system', 'farbtastic'),
+        ),
+        'js' => array(drupal_get_path('module', 'here_maps_formatter') . '/js/here_maps_formatter_farbtastic.js'),
+      ),
+      '#suffix' => '<div id="here-maps-formatter-color-picker"></div>',
     );
   }
 

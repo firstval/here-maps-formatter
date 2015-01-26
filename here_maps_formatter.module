@@ -82,7 +82,7 @@ function here_maps_formatter_field_formatter_info() {
         'connection_protocol' => 'http',
         'map_settings' => 1,
         'scale_bar' => 1,
-        'marker_color' => '#18d',
+        'marker_color' => '#1188dd',
       ),
     );
   }

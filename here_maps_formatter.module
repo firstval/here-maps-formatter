@@ -300,6 +300,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
   $base_map = $settings['base_map'];
   $connection_protocol = $settings['connection_protocol'];
   $map_settings = $settings['map_settings'];
+  $zoom_bar = $settings['zoom_bar'];
   $scale_bar = $settings['scale_bar'];
   $marker_color = $settings['marker_color'];
 

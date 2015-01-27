@@ -81,6 +81,7 @@ function here_maps_formatter_field_formatter_info() {
         'base_map' => 'Normal',
         'connection_protocol' => 'http',
         'map_settings' => 1,
+        'zoom_bar' => 1,
         'scale_bar' => 1,
         'marker_color' => '#1188dd',
       ),
@@ -177,6 +178,12 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
       '#title' => t('Include Map Settings Button'),
       '#type' => 'checkbox',
       '#default_value' => $settings['map_settings'],
+    );
+
+    $element['zoom_bar'] = array(
+      '#title' => t('Include Zoom Bar'),
+      '#type' => 'checkbox',
+      '#default_value' => $settings['zoom_bar'],
     );
 
     $element['scale_bar'] = array(

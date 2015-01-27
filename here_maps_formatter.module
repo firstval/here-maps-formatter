@@ -325,6 +325,7 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
       $data['connection_protocol'] = $connection_protocol;
       $data['map_ui'] = array(
         'map_settings' => $map_settings,
+        'zoom_bar' => $zoom_bar,
         'scale_bar' => $scale_bar,
       );
       $data['marker_color'] = $marker_color;

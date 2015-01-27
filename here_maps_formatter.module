@@ -263,6 +263,14 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
     );
 
     // Convert the 0 or 1 checkbox's value/state to a more readable format.
+    $zoom_bar = ($settings['zoom_bar'] == 1) ? 'Enabled' : 'Disabled';
+
+    $summary[] = t('Zoom Bar: @zoom_bar', array(
+      '@zoom_bar' => $zoom_bar,
+      )
+    );
+
+    // Convert the 0 or 1 checkbox's value/state to a more readable format.
     $scale_bar = ($settings['scale_bar'] == 1) ? 'Enabled' : 'Disabled';
 
     $summary[] = t('Scale Bar: @scale_bar', array(

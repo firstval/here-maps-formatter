@@ -254,27 +254,18 @@ function here_maps_formatter_field_formatter_settings_summary($field, $instance,
       )
     );
 
-    // Convert the 0 or 1 checkbox's value/state to a more readable format.
-    $map_settings = ($settings['map_settings'] == 1) ? 'Enabled' : 'Disabled';
-
     $summary[] = t('Map Settings Button: @map_settings', array(
-      '@map_settings' => $map_settings,
+      '@map_settings' => _here_maps_formatter_checkbox_state_labeler($settings['map_settings']),
       )
     );
-
-    // Convert the 0 or 1 checkbox's value/state to a more readable format.
-    $zoom_bar = ($settings['zoom_bar'] == 1) ? 'Enabled' : 'Disabled';
 
     $summary[] = t('Zoom Bar: @zoom_bar', array(
-      '@zoom_bar' => $zoom_bar,
+      '@zoom_bar' => _here_maps_formatter_checkbox_state_labeler($settings['zoom_bar']),
       )
     );
 
-    // Convert the 0 or 1 checkbox's value/state to a more readable format.
-    $scale_bar = ($settings['scale_bar'] == 1) ? 'Enabled' : 'Disabled';
-
     $summary[] = t('Scale Bar: @scale_bar', array(
-      '@scale_bar' => $scale_bar,
+      '@scale_bar' => _here_maps_formatter_checkbox_state_labeler($settings['scale_bar']),
       )
     );
 
@@ -373,3 +364,14 @@ function _here_maps_formatter_scripts_loader() {
   // Load the custom HERE Maps behaviors for processing the map objects.
   drupal_add_js(drupal_get_path('module', 'here_maps_formatter') . '/js/here_maps_formatter.js');
 }
+
+/**
+ * Helper function for converting the checkbox's state to a more readable form.
+ *
+ */
+function _here_maps_formatter_checkbox_state_labeler($state) {
+  return ($state == 1) ? 'Enabled' : 'Disabled';
+}
+
+
+

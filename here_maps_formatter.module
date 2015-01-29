@@ -322,7 +322,12 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
       $data['marker_color'] = $marker_color;
 
       // Pass the Geofield map features info to the map processor in JavaScript.
-      drupal_add_js(array('here_maps_formatter' => $data), 'setting');
+      // Use the Render API for passing the Drupal.settings info
+      // instead of drupla_add_js().
+      $element['#attached']['js'][] = array(
+        'data' => array('here_maps_formatter' => $data),
+        'type' => 'setting',
+      );
     }
   }
 
@@ -372,6 +377,3 @@ function _here_maps_formatter_scripts_loader() {
 function _here_maps_formatter_checkbox_state_labeler($state) {
   return ($state == 1) ? 'Enabled' : 'Disabled';
 }
-
-
-

@@ -303,9 +303,6 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
     // in selected pages to avoid affecting a page's stability and
     // its loading performance.
     if (!empty($items)) {
-      // Load the helper scripts.
-      _here_maps_formatter_scripts_loader();
-
       // Replace the Geofield markup.
       $element[0] = array('#markup' => '<div id="here-maps" data-zoom="' . $map_zoom . '" style="width: ' . $map_width . $map_width_unit . '; height: ' . $map_height . 'px;"></div>');
 
@@ -321,13 +318,11 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
       );
       $data['marker_color'] = $marker_color;
 
-      // Pass the Geofield map features info to the map processor in JavaScript.
-      // Use the Render API for passing the Drupal.settings info
-      // instead of drupla_add_js().
-      $element['#attached']['js'][] = array(
-        'data' => array('here_maps_formatter' => $data),
-        'type' => 'setting',
-      );
+      // Load the Drupal.setings.here_maps_formatter objects.
+      _here_maps_formatter_settings_loader($element, $data);
+
+      // Load the helper scripts, attach JS scripts and CSS files.
+      _here_maps_formatter_scripts_loader($element);
     }
   }
 
@@ -337,9 +332,9 @@ function here_maps_formatter_field_formatter_view($entity_type, $entity, $field,
 
 
 /**
- * Helper function for loading HERE Maps core and related scripts.
+ * Helper function for loading HERE Maps Formatter settings.
  */
-function _here_maps_formatter_scripts_loader() {
+function _here_maps_formatter_settings_loader(&$element, $data) {
   // Retrieve the app credential values,
   // return their default values if they're not set yet.
   $app_code = variable_get('here_maps_formatter_app_code', 'AJKnXv84fjrb0KIHawS0Tg');
@@ -356,9 +351,20 @@ function _here_maps_formatter_scripts_loader() {
     'app_id' => $app_id,
   );
 
-  // Append the keys to the Drupal.settings.here_maps_formatter global object.
-  drupal_add_js(array('here_maps_formatter' => $api_keys), 'setting');
+  // Merge the formatter's data settings with that of the app's credentials.
+  $settings = array_merge($data, $api_keys);
 
+  $element['#attached']['js'][] = array(
+    'data' => array('here_maps_formatter' => $settings),
+    'type' => 'setting',
+  );
+}
+
+
+/**
+ * Helper function for loading HERE Maps core and related scripts.
+ */
+function _here_maps_formatter_scripts_loader(&$element) {
   // Add HERE Maps 3.0 libraries.
   drupal_add_css('//js.api.here.com/v3/3.0.8.0/mapsjs-ui.css', 'external');
   drupal_add_js('//js.api.here.com/v3/3.0.8.0/mapsjs-core.js', 'external');
@@ -369,6 +375,7 @@ function _here_maps_formatter_scripts_loader() {
   // Load the custom HERE Maps behaviors for processing the map objects.
   drupal_add_js(drupal_get_path('module', 'here_maps_formatter') . '/js/here_maps_formatter.js');
 }
+
 
 /**
  * Helper function for converting the checkbox's state to a more readable form.

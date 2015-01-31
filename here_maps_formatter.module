@@ -365,33 +365,35 @@ function _here_maps_formatter_settings_loader(&$element, $data) {
  * Helper function for loading HERE Maps 3.0 core and related scripts.
  */
 function _here_maps_formatter_scripts_loader(&$element) {
+  $here_maps_base_url = '//js.api.here.com/v3/3.0.8.0/';
+
   // Add the map's core functionalities.
   $element['#attached']['js'][] = array(
-    'data' => '//js.api.here.com/v3/3.0.8.0/mapsjs-core.js',
+    'data' => $here_maps_base_url . 'mapsjs-core.js',
     'type' => 'external',
   );
 
   // Add the file for configuring the Platform object.
   $element['#attached']['js'][] = array(
-    'data' => '//js.api.here.com/v3/3.0.8.0/mapsjs-service.js',
+    'data' => $here_maps_base_url . 'mapsjs-service.js',
     'type' => 'external',
   );
 
   // Add the file for handling map events.
   $element['#attached']['js'][] = array(
-    'data' => '//js.api.here.com/v3/3.0.8.0/mapsjs-mapevents.js',
+    'data' => $here_maps_base_url . 'mapsjs-mapevents.js',
     'type' => 'external',
   );
 
   // Add the file for binding events to the map UI elements like the zoom bar.
   $element['#attached']['js'][] = array(
-    'data' => '//js.api.here.com/v3/3.0.8.0/mapsjs-ui.js',
+    'data' => $here_maps_base_url . 'mapsjs-ui.js',
     'type' => 'external',
   );
 
   // Add the style file for the map.
   $element['#attached']['css'][] = array(
-    'data' => '//js.api.here.com/v3/3.0.8.0/mapsjs-ui.css',
+    'data' => $here_maps_base_url . 'mapsjs-ui.css',
     'type' => 'external',
   );
 

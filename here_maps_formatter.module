@@ -194,7 +194,7 @@ function here_maps_formatter_field_formatter_settings_form($field, $instance, $v
 
     $element['marker_color'] = array(
       '#title' => t('Marker Color'),
-      '#description' => t('HERE Maps\' default blue marker has a color value of #1188dd.'),
+      '#description' => t("HERE Maps' default blue marker has a color value of #1188dd."),
       '#type' => 'textfield',
       '#size' => 7,
       '#required' => TRUE,
@@ -407,7 +407,6 @@ function _here_maps_formatter_scripts_loader(&$element) {
 
 /**
  * Helper function for converting the checkbox's state to a more readable form.
- *
  */
 function _here_maps_formatter_checkbox_state_labeler($state) {
   return ($state == 1) ? 'Enabled' : 'Disabled';

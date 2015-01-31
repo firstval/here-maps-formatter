@@ -409,5 +409,5 @@ function _here_maps_formatter_scripts_loader(&$element) {
  * Helper function for converting the checkbox's state to a more readable form.
  */
 function _here_maps_formatter_checkbox_state_labeler($state) {
-  return ($state == 1) ? 'Enabled' : 'Disabled';
+  return ($state == 1) ? t('Enabled') : t('Disabled');
 }
